@@ -12,11 +12,7 @@ Kaava is a specification intelligence system that helps you think through softwa
 
 ## Step 1: Get Your Invitation
 
-As an alpha user, you'll receive:
-- A project invitation email with a magic link to access Storyboard
-- This tarball file: `kaava-mcp-1.29.0.tgz`
-
-If you haven't received these, contact Aaron.
+As an alpha user, you'll receive a project invitation email with a magic link to access Storyboard. If you haven't received one, contact Aaron.
 
 ## Step 2: Install the MCP Server
 
@@ -28,12 +24,12 @@ The MCP server lets Claude help you create and manage specifications.
 
 ### Installation
 
-```bash
-# Create a directory for Kaava
-mkdir -p ~/.kaava
+1. Download the latest release from: [github.com/aeris-dev/kaava-mcp-releases/releases](https://github.com/aeris-dev/kaava-mcp-releases/releases)
 
-# Install from the tarball (replace path with actual location)
-npm install -g /path/to/kaava-mcp-1.29.0.tgz
+2. Install globally:
+```bash
+# Install from the downloaded tarball
+npm install -g ~/Downloads/kaava-mcp-1.29.0.tgz
 ```
 
 ### Configure Claude Desktop
@@ -75,7 +71,17 @@ Claude should respond using the `kaava_query` tool.
 In Claude Desktop, say:
 > "Initialize a new Kaava project called my-app in /path/to/my-app"
 
-Claude will use `kaava_init` to set up the project structure.
+Claude will use `kaava_init` to set up the project structure, including:
+- `.kaava/kaava.db` — SQLite database storing all specifications
+- `CLAUDE.md` — Instructions for Claude on how to work with your project
+
+### The CLAUDE.md File
+
+Every Kaava project includes a `CLAUDE.md` file at the root. This file teaches Claude how to use the Kaava tools effectively for your project. When starting a conversation about your project, tell Claude:
+
+> "Read CLAUDE.md and help me with my specifications"
+
+This ensures Claude understands the Kaava workflow: using MCP tools instead of raw file edits, logging decisions as you go, and keeping specs in sync.
 
 ## Step 4: Connect to Storyboard
 
